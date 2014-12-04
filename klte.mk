@@ -117,7 +117,6 @@ PRODUCT_PACKAGES += \
     hostapd.deny \
     hostapd \
     hostapd_default.conf \
-    libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
 
