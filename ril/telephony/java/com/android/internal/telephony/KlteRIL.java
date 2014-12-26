@@ -50,11 +50,7 @@ import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 
 /**
- * Qualcomm RIL for the Samsung family.
- * Quad core Exynos4 with Qualcomm modem and later is supported
- * Snapdragon S3 and later is supported
- * This RIL is univerisal meaning it supports CDMA and GSM radio.
- * Handles most GSM and CDMA cases.
+ * RIL customization for Galaxy S5 LTE devices
  * {@hide}
  */
 public class KlteRIL extends RIL implements CommandsInterface {
@@ -65,7 +61,6 @@ public class KlteRIL extends RIL implements CommandsInterface {
     private boolean mIsSendingSMS = false;
     protected boolean isGSM = false;
     public static final long SEND_SMS_TIMEOUT_IN_MS = 30000;
-    private boolean samsungEmergency = needsOldRilFeature("samsungEMSReq");
 
     private Message mPendingGetSimStatus;
 
@@ -73,14 +68,14 @@ public class KlteRIL extends RIL implements CommandsInterface {
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
+        mQANElements = 6;
     }
 
     public KlteRIL(Context context, int networkMode,
             int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
+        mQANElements = 6;
     }
 
     @Override
@@ -693,7 +688,7 @@ public class KlteRIL extends RIL implements CommandsInterface {
     @Override
     public void
     dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
-        if (samsungEmergency && PhoneNumberUtils.isEmergencyNumber(address)) {
+        if (PhoneNumberUtils.isEmergencyNumber(address)) {
             dialEmergencyCall(address, clirMode, result);
             return;
         }
