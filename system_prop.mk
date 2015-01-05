@@ -4,7 +4,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.voicecall=true \
     persist.audio.fluence.voicerec=false \
     ro.qc.sdk.audio.fluencetype=fluence \
-    use.voice.path.for.pcm.voip=false \
     use.dedicated.device.for.voip=true \
     mm.enable.smoothstreaming=true \
     av.streaming.offload.enable=true \
@@ -14,7 +13,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     tunnel.audio.encode=true \
     media.aac_51_output_enabled=true \
     audio.offload.pcm.16bit.enable=true \
-    audio.offload.pcm.24bit.enable=true
+    audio.offload.pcm.24bit.enable=true \
+    audio.offload.buffer.size.kb=32 \
+    mm.enable.qcom_parser=37491
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
