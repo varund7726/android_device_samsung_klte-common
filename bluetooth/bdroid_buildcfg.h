@@ -20,9 +20,4 @@
 
 #define BTM_DEF_LOCAL_NAME   "Samsung Galaxy S5"
 
-#define BLE_PERIPHERAL_ADV_NAME  TRUE
-#define BLE_VND_INCLUDED         TRUE
-#define BTM_AUTOMATIC_HCI_RESET  TRUE
-#define BLUETOOTH_QTI_SW         TRUE
-
 #endif
